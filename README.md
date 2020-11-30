@@ -8,13 +8,17 @@ This is a small gradle plugin to upload your apk to birdflight (Testbirds)
 
 ## Usage  
 
+#### mavenLocal
+
+Add the jar to your local maven repo (https://github.com/FabGroeger/gradle-plugins-BirdFlightUpload/releases)
+
 #### build.gradle (top-level)  
 
 ```
 buildscript {
 
     repositories {
-      mavenCentral()
+      mavenLocal()
       ...
     }
     dependencies {
