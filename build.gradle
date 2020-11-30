@@ -1,0 +1,46 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        localGroovy()
+        gradleApi()
+    }
+}
+
+plugins {
+    id 'groovy'
+    id 'maven'
+}
+
+group 'de.fabgroeger.gradle.plugins'
+version '2.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile gradleApi()
+    compile localGroovy()
+
+
+    implementation 'org.apache.httpcomponents:httpmime:4.5.13'
+
+    implementation ('org.codehaus.groovy.modules.http-builder:http-builder:0.5.0')
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().url)
+        }
+    }
+}
