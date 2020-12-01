@@ -44,7 +44,7 @@ birdflightuploadExtension {
 }
 ```
 
-##### the upload
+#### the upload
 
 The plugin will generate tasks for all variants of your android app.  
 Simply append the variant to the task
