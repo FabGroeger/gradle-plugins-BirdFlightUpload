@@ -39,8 +39,6 @@ birdflightuploadExtension {
     appKey = "YOUR_APP_KEY"
     id = "YOUR_APP_VERSION_ID"
     appVersion = "YOUR_APP_VERSION"
-    compatiblity = "YOUR_APP_COMPATIBILITY"
-    appBuildFileFullQualified = "/Users/.../YOURAPP/app/build/outputs/apk/debug/app-debug.apk"
     notes = "YOUR NOTES"
     isPublic = "true|false"
 }
@@ -48,4 +46,9 @@ birdflightuploadExtension {
 
 ##### the upload
 
-./gradlew bfupload
+The plugin will generate tasks for all variants of your android app.  
+Simply append the variant to the task
+
+```
+./gradlew bfuploadFlavorDebug
+```
