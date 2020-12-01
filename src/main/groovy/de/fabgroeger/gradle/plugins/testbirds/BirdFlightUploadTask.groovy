@@ -1,6 +1,6 @@
 package de.fabgroeger.gradle.plugins.testbirds
 
-
+import groovy.json.JsonSlurper
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
 import org.apache.http.entity.mime.HttpMultipartMode
@@ -36,11 +36,7 @@ class BirdFlightUploadTask extends DefaultTask {
     String isPublic
 
     @Input
-    @Optional
-    String appBuildVariantFile
-
-    @Input
-    String appBuildFileFullQualified
+    File appBuildFileFullQualified
 
     @Input
     String TB_UPLOAD_URL
@@ -50,6 +46,8 @@ class BirdFlightUploadTask extends DefaultTask {
 
     @Input
     String TB_APP_KEY_PLACER
+
+    String TB_BASE_URL = "https://www.birdflightapp.com"
 
     @TaskAction
     void uploadInternal(){
@@ -86,17 +84,7 @@ class BirdFlightUploadTask extends DefaultTask {
             multiPartContent.addPart("public", new StringBody(getIsPublic()));
             multiPartContent.addPart("id", new StringBody(getId()));
 
-            def file
-            if(appBuildVariantFile){
-                println "Upload File:$appBuildVariantFile"
-                file = new File(getAppBuildVariantFile())
-            }
-            else{
-                println "Upload File:$appBuildFileFullQualified"
-                file = new File(getAppBuildFileFullQualified())
-            }
-
-            multiPartContent.addPart("appBuildFile", new InputStreamBody(file.newInputStream(), file.name))
+            multiPartContent.addPart("appBuildFile", new InputStreamBody(appBuildFileFullQualified.newInputStream(), appBuildFileFullQualified.name))
 
             req.setEntity(multiPartContent)
 
@@ -106,10 +94,19 @@ class BirdFlightUploadTask extends DefaultTask {
                 println resp.statusLine.statusCode
 
                 if (resp.statusLine.statusCode == 200) {
+                    String respStr = "${resp?.entity?.content?.text}"
+                    print "Success: ${respStr}"
+
+                    def jsonSlurper = new JsonSlurper()
+
+                    println "slupers: "
+                    def object = jsonSlurper.parseText(respStr)
+
+                    println "\n\nArtifact URL:  ${TB_BASE_URL}${object.files.url}"
 
                 }
                 else{
-
+                    print"Error: [${resp?.entity?.content?.text}"
                 }
             }
         }

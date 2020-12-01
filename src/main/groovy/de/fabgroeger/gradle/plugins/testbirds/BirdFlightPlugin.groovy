@@ -1,6 +1,8 @@
 package de.fabgroeger.gradle.plugins.testbirds
 
+import com.android.build.api.variant.ApplicationVariant
 import com.android.build.gradle.AppExtension
+import groovy.json.JsonSlurper
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -11,11 +13,17 @@ class BirdFlightPlugin implements Plugin<Project> {
 
     void apply(Project project) {
 
-        AppExtension androidExtension = project.extensions.findByName("android")
+        AppExtension androidExtension = project.extensions.getByType(AppExtension.class)
+
         BirdFlightPluginExtension extension = project.extensions.create(EXTENSION_NAME, BirdFlightPluginExtension, project)
 
         androidExtension.applicationVariants.all { variant ->
-            task ("${TASK_NAME}${variant.name.capitalize()}", type: BirdFlightUploadTask) {BirdFlightUploadTask task ->
+
+            String taskName = "${TASK_NAME}${variant.name.capitalize()}"
+            println "Trying to add Task: ${taskName}"
+
+
+            project.task("${taskName}", type: BirdFlightUploadTask) { BirdFlightUploadTask task ->
 
                 task.conventionMapping.apiKey = { extension.apiKey }
                 task.conventionMapping.appKey = { extension.appKey }
@@ -35,6 +43,7 @@ class BirdFlightPlugin implements Plugin<Project> {
                 println "\n\n"
 
             }
+
         }
 
     }
