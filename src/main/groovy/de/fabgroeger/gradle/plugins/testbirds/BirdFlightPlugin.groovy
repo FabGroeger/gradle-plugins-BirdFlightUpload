@@ -1,8 +1,6 @@
 package de.fabgroeger.gradle.plugins.testbirds
 
-import com.android.build.api.variant.ApplicationVariant
 import com.android.build.gradle.AppExtension
-import groovy.json.JsonSlurper
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
