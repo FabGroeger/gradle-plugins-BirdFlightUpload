@@ -23,7 +23,7 @@ plugins {
 
 //group 'de.fabgroeger.gradle.plugins'
 group "fabgroeger.gradle-plugins-BirdFlightUpload"
-version '3.0'
+version '4.0'
 
 sourceCompatibility = 1.8
 
@@ -79,7 +79,7 @@ publishing {
     publications {
         release(MavenPublication) {
             from components.java
-            groupId = "fabgroeger.gradle-plugins-BirdFlightUpload"
+            groupId = "de.fabgroeger.gradle.plugins"
             artifactId = project.archivesBaseName
             version = project.version
         }
