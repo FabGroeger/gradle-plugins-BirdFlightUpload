@@ -28,7 +28,7 @@ buildscript {
 }
 ```
 
-#### build.gralde (app-specific)
+#### build.gralde (app-specific)  
 
 ```
 apply plugin: 'birdflightupload'
