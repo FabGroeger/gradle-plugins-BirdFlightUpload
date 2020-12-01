@@ -9,13 +9,17 @@ buildscript {
         localGroovy()
         gradleApi()
         classpath "com.android.tools.build:gradle:4.0.0"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
     }
 }
 
 plugins {
     id 'groovy'
     id 'maven'
+    id "com.jfrog.bintray" version "1.8.5"
+    id 'maven-publish'
 }
+
 
 group 'de.fabgroeger.gradle.plugins'
 version '3.0'
@@ -48,6 +52,33 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: mavenLocal().url)
+        }
+    }
+}
+
+bintray {
+    user = project.bintrayUser
+    key = project.bintayApiKey
+    publications = ['MyPublication']
+    publish = true
+
+    pkg {
+        repo = 'gradle-plugins-BirdFlightUpload'
+        name = project.group + "." + project.rootProject.name
+        userOrg = project.bintrayUser
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/FabGroeger/gradle-plugins-BirdFlightUpload'
+    }
+}
+
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId = project.group
+            artifactId = project.archivesBaseName
+            version = project.version
         }
     }
 }
