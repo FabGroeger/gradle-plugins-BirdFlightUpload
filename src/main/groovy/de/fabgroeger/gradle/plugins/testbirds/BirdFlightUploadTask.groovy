@@ -47,6 +47,22 @@ class BirdFlightUploadTask extends DefaultTask {
     @Input
     String TB_APP_KEY_PLACER
 
+    @Input
+    @Optional
+    String httpProxyName
+
+    @Input
+    @Optional
+    String httpProxyPort
+
+    @Input
+    @Optional
+    String httpsProxyName
+
+    @Input
+    @Optional
+    String httpsProxyPort
+
     String TB_BASE_URL = "https://www.birdflightapp.com"
 
     @TaskAction
@@ -71,6 +87,22 @@ class BirdFlightUploadTask extends DefaultTask {
     void sendMultiPartFile(modUrl) {
 
         def http = new HTTPBuilder(modUrl)
+
+        if(httpProxyName && httpProxyPort){
+            http.setProxy(httpProxyName, httpProxyPort, "http")
+            println "Using Proxy ${httpProxyName}:${httpProxyPort} for http"
+        }
+        else{
+            println "Using NO Proxy for http"
+        }
+        if(httpsProxyName && httpsProxyPort){
+            http.setProxy(httpsProxyName, httpsProxyPort, "https")
+            println "Using Proxy ${httpsProxyName}:${httpsProxyPort} for https"
+        }
+        else{
+            println "Using NO Proxy for https"
+        }
+
 
         http.request(Method.POST) { req ->
 
