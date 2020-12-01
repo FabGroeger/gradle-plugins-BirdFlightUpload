@@ -8,14 +8,10 @@ class BirdFlightPluginExtension {
     String appKey = ""
     String id = "0"
     String appVersion = "0"
-    String compatiblity = "Android" //iOS or Android -> CHECK
+    String compatiblity = "Android"
     String notes = ""
     //seriazlized as 'public' only
     String isPublic = "true"
-    String appBuildFile = ""
-    String appBuildFileFullQualified = ""
-    //String dSymFile = ""
-    //String dSymFileFullQualified  = ""
     final String TB_PROJ_ID_PLACER = "{{TB_PROJECT_ID}}"
     final String TB_APP_KEY_PLACER = "{{API_KEY}}"
 
