@@ -36,9 +36,6 @@ class BirdFlightUploadTask extends DefaultTask {
     String isPublic
 
     @Input
-    String appBuildFile
-
-    @Input
     @Optional
     String appBuildVariantFile
 
@@ -53,13 +50,6 @@ class BirdFlightUploadTask extends DefaultTask {
 
     @Input
     String TB_APP_KEY_PLACER
-
-
-    //@Input
-    //String dSymFile
-
-    //@Input
-    //String dSymFileFullQualified
 
     @TaskAction
     void uploadInternal(){
