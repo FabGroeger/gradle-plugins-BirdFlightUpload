@@ -59,12 +59,14 @@ uploadArchives {
 bintray {
     user = project.bintrayUser
     key = project.bintayApiKey
-    publications = ['MyPublication']
+    publications = ['release']
     publish = true
+    override = true
+
 
     pkg {
         repo = 'gradle-plugins-BirdFlightUpload'
-        name = project.group + "." + project.rootProject.name
+        name = project.rootProject.name
         userOrg = project.bintrayUser
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/FabGroeger/gradle-plugins-BirdFlightUpload'
@@ -74,7 +76,7 @@ bintray {
 
 publishing {
     publications {
-        MyPublication(MavenPublication) {
+        release(MavenPublication) {
             from components.java
             groupId = project.group
             artifactId = project.archivesBaseName
