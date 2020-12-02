@@ -28,7 +28,7 @@ class BirdFlightPlugin implements Plugin<Project> {
                 task.conventionMapping.id = { extension.id }
                 task.conventionMapping.appVersion = { extension.appVersion }
                 task.conventionMapping.compatiblity = { extension.compatiblity }
-                task.conventionMapping.notes = { extension.notes }
+                task.conventionMapping.notes = { extension.notes + "\n" + variant.outputs[0].outputFile.name }
                 task.conventionMapping.isPublic = { extension.isPublic }
                 task.conventionMapping.appBuildFileFullQualified = { variant.outputs[0].outputFile }
                 task.conventionMapping.TB_UPLOAD_URL = { extension.TB_UPLOAD_URL }
