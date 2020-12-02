@@ -35,10 +35,10 @@ class BirdFlightPlugin implements Plugin<Project> {
                 task.conventionMapping.TB_PROJ_ID_PLACER = { extension.TB_PROJ_ID_PLACER }
                 task.conventionMapping.TB_APP_KEY_PLACER = { extension.TB_APP_KEY_PLACER }
 
-                task.conventionMapping.httpProxyName = { project.properties.getProperty("systemProp.http.proxyHost") }
-                task.conventionMapping.httpProxyPort = { project.properties.getProperty("systemProp.http.proxyPort") }
-                task.conventionMapping.httpsProxyName = { project.properties.getProperty("systemProp.https.proxyHost") }
-                task.conventionMapping.httpsProxyPort = { project.properties.getProperty("systemProp.https.proxyport") }
+                task.conventionMapping.httpProxyName = { project.properties.get("systemProp.http.proxyHost") }
+                task.conventionMapping.httpProxyPort = { project.properties.get("systemProp.http.proxyPort") }
+                task.conventionMapping.httpsProxyName = { project.properties.get("systemProp.https.proxyHost") }
+                task.conventionMapping.httpsProxyPort = { project.properties.get("systemProp.https.proxyport") }
 
                 println "\nTask ${TASK_NAME}${variant.name.capitalize()} added for artifact:"
                 println variant.name.capitalize()

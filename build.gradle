@@ -23,7 +23,7 @@ plugins {
 
 //group 'de.fabgroeger.gradle.plugins'
 group "fabgroeger.gradle-plugins-BirdFlightUpload"
-version '4.0'
+version '4.1'
 
 sourceCompatibility = 1.8
 
