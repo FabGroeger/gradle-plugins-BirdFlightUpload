@@ -15,6 +15,11 @@ class BirdFlightPluginExtension {
     final String TB_PROJ_ID_PLACER = "{{TB_PROJECT_ID}}"
     final String TB_APP_KEY_PLACER = "{{API_KEY}}"
 
+    String httpProxyHost = ""
+    int httpProxyPort = 0
+    String httpsProxyHost = ""
+    int httpsProxyPort = 0
+
     Project project
 
     BirdFlightPluginExtension(Project project) {

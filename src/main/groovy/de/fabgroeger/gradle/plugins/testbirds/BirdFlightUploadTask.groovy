@@ -48,20 +48,16 @@ class BirdFlightUploadTask extends DefaultTask {
     String TB_APP_KEY_PLACER
 
     @Input
-    @Optional
-    String httpProxyName
+    String httpProxyHost
 
     @Input
-    @Optional
-    String httpProxyPort
+    int httpProxyPort
 
     @Input
-    @Optional
-    String httpsProxyName
+    String httpsProxyHost
 
     @Input
-    @Optional
-    String httpsProxyPort
+    int httpsProxyPort
 
     String TB_BASE_URL = "https://www.birdflightapp.com"
 
@@ -88,16 +84,16 @@ class BirdFlightUploadTask extends DefaultTask {
 
         def http = new HTTPBuilder(modUrl)
 
-        if(httpProxyName && httpProxyPort){
-            http.setProxy(httpProxyName, httpProxyPort, "http")
-            println "Using Proxy ${httpProxyName}:${httpProxyPort} for http"
+        if("" != getHttpProxyHost() && 0 != getHttpProxyPort()){
+            http.setProxy(getHttpProxyHost(), getHttpProxyPort(), "http")
+            println "Using Proxy ${getHttpProxyHost()}:${getHttpProxyPort()} for http"
         }
         else{
             println "Using NO Proxy for http"
         }
-        if(httpsProxyName && httpsProxyPort){
-            http.setProxy(httpsProxyName, httpsProxyPort, "https")
-            println "Using Proxy ${httpsProxyName}:${httpsProxyPort} for https"
+        if("" != getHttpsProxyHost() && 0 != getHttpsProxyPort()){
+            http.setProxy(getHttpsProxyHost(), getHttpsProxyPort(), "https")
+            println "Using Proxy ${getHttpsProxyHost()}:${getHttpsProxyPort()} for https"
         }
         else{
             println "Using NO Proxy for https"
