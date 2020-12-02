@@ -1,5 +1,5 @@
 <h1 align="center">
-    BirdFlight artifact (apk | ipa/dsym) Upload 
+    BirdFlight artifact APK Upload 
 </h1>
 
 ## Gradle Plugin  
@@ -41,6 +41,11 @@ birdflightuploadExtension {
     appVersion = "YOUR_APP_VERSION"
     notes = "YOUR NOTES"
     isPublic = "true|false"
+    //optionally
+    //httpProxyHost = "proxyhost.net"
+    //httpProxyPort = 8080
+    //httpsProxyHost = "proxyhost.net"
+    //httpsProxyPort = 8080
 }
 ```
 
