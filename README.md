@@ -18,11 +18,13 @@ Add the jar to your local maven repo (https://github.com/FabGroeger/gradle-plugi
 buildscript {
 
     repositories {
-      mavenLocal()
+      maven {
+            url "https://dl.bintray.com/fabgroeger/gradle-plugins-BirdFlightUpload/"
+        }
       ...
     }
     dependencies {
-        classpath group: 'de.fabgroeger.gradle.plugins', name: 'testbirdsappupload', version: '2.0-SNAPSHOT'
+        classpath 'de.fabgroeger.gradle.plugins:birdflightupload:4.2'
         ....
     }
 }
